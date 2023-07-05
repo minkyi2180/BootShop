@@ -103,7 +103,7 @@ public class ItemController {
 			}
 			this.itemService.delete(item);
 			
-			return "redirect:";
+			return "redirect:/item/adminList";
 		}
 		
 		//상품수정
@@ -134,5 +134,7 @@ public class ItemController {
 			
 			return String.format("redirect:/item/adminList", id);
 		}
+		
+		//상세페이지
 
 }
