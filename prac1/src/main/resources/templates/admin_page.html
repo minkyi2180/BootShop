@@ -1,0 +1,48 @@
+<html layout:decorate="~{layout}"
+	xmlns:th="http//www.thymeleaf.org">
+<div layout:fragment="content" class="container my-3">
+<h3>관리자 페이지</h3>
+
+<div class="position-sticky pt-3">
+    <div class="row">
+      <div class="col-lg-4">
+                <div class="card mb-4">
+						<button type="button" class="btn btn-primary" th:text="상품관리" onclick="location.href='/item/adminList'"></button>                    
+                  
+                </div>
+            </div>
+            
+            
+            
+         
+            </div>
+            </div>
+    
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    
+    
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          
+            <li class="nav-item">
+                <a class="nav-link" >
+                    <span data-feather="file"></span>
+                    회원관리
+                </a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" >
+                    <span data-feather="file"></span>
+                    판매내역
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    
+</div>
+
+<script layout:fragment="script" type='text/javascript'>
+</script>
+</html>

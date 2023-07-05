@@ -1,0 +1,41 @@
+<html layout:decorate="~{layout}" xmlns:th="http//www.thymeleaf.org">
+<div layout:fragment="content" class="container my-3">
+
+	<!-- 대문 끝 -->
+	<div class="container text-center">
+		<br>
+		<h5> 총  <span class="badge text-bg-light" th:text="|${#lists.size(item_list)}|"></span>개의 상품</h5>
+		<hr>
+		<br>
+		<button id="category_all" th:value="0" type="button" class="btn btn-outline-primary" onclick="getItemListAll()">전체보기</button>
+		
+		<button type="button" class="btn btn-outline-success" onclick="getItemListCategory_price()">가격순</button>
+		<!-- 나중에 주문순도 구현 -->
+		<!-- <!-- <button type="button" class="btn btn-outline-success" onclick="getItemListCategory_sellCount()" >주문순</button> -->
+		<button type="button" class="btn btn-outline-success" onclick="getItemListCategory_createDate()">최신순</button>
+		<br>
+		<br>
+		<br>
+		<div class="row row-cols-1 row-cols-md-6 g-4 item_list_parent">
+ 			<div class="col item_list_child" th:each="item: ${item_list}">
+			 	<div id="item_list" class="card h-100">
+			 	<img th:data-uri="@{|item/detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="...">
+			   	<div class="card-body">
+			     	<a th:href="@{|item/detail/${item.id}|}" class="card-title" th:text="${item.name}"></a>
+			     	
+			     	<h5 class="card-text" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></h5>
+			     	<span th:if="${item.isSoldOut == 0 and item.stock > 0}" class="badge text-bg-success" th:text="판매중"></span>
+		     		<span th:if="${item.isSoldOut == 1 or item.stock == 0}" class="badge text-bg-danger" th:text="품절"></span>
+			   	</div>
+			 	</div>
+			</div>
+			<div class="test"></div> 
+	  	</div>
+	</div>
+<br>
+<br>
+<br>
+</div>
+
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<title>쇼핑몰메인</title>
+</head>
+
+
+<div layout:fragment="content" class="container my-3">
+
+	<div class="row my-3"></div>
+
+	<header class="header"
+		style="background-image: url('/Main.jpg'); height: 200px; background-size: 50%;">
+		<div class="container px-4 px-lg-5 my-3">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Shop</h1>
+				<p class="lead fw-normal text-white-50 mb-0">부트프로젝트 쇼핑몰</p>
+			</div>
+		</div>
+	</header>
+	<body>
+		<div class="category my-4">
+			<ul class="category__list me-auto mb-2 mb-lg-0"
+				style="list-style-type: none; ">
+							<li class="cate_menu" style="display: inline-block;text-align: center;margin-left: 50px;">
+				<a class="cate_link" th:href="@{item/itemList}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/a.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				전제품</a>
+</li>
+			<li class="cate_menu" style="display: inline-block; text-align: center; margin-left: 50px;">
+				<a class="cate_link" th:href="@{/question/list}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/1.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				커뮤니티</a>
+</li>
+
+			<li class="cate_menu" style="display: inline-block; text-align: center;margin-left: 50px;">
+				<a class="cate_link" href="/shop/cart" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/2.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				장바구니</a>
+</li>
+			<li class="cate_menu" style="display: inline-block;text-align: center;margin-left: 50px;">
+				<a class="cate_link" th:href="@{/question/list}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/4.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				주문내역</a>
+</li>
+			<li class="cate_menu" style="display: inline-block; text-align: center;margin-left: 50px;">
+				<a class="cate_link" th:href="@{/user/mypage}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/3.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				마이페이지</a>
+</li>
+		
+				
+	
+			</ul>
+		</div>
+
+
+<div class="container text-center">
+	  <!-- 최근등록된 상품들 시작 -->
+	  <h2>최근 등록된 상품들</h2>
+	  <hr>
+	  <br>
+	  <!-- 상품반복 시작 (최신순) -->
+<div class="row row-cols-1 row-cols-md-4 g-4" th:if="${#lists.size(item_list) > 0}">
+    <div class="col" th:each="item,index : ${item_list}" th:if="${index.index} < 4">
+        <div id="item" class="card h-100">
+            <img th:data-uri="@{|item/detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="...">
+            <div class="card-body">
+                <a th:href="@{|item/detail/${item.id}|}" class="card-title" th:text="${item.name}"></a>
+                
+                <h5 class="card-text" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></h5>
+                <span th:if="${item.isSoldOut == 0 and item.stock > 0}" class="badge text-bg-success" th:text="판매중"></span>
+                <span th:if="${item.isSoldOut == 1 or item.stock == 0}" class="badge text-bg-danger" th:text="품절"></span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col">
+        <a id="moreItem_btn" th:href="@{/item/itemList}" class="btn btn-outline-dark">더 둘러보기</a>
+    </div> 
+</div>
+	</div>
+	</body>
+			<div th:fragement="footer">
+<footer class="py-5 bg-dark">
+<div class="container">
+<p class="text-center text-white">Copyright &copy; 2023 project</p>
+</div>
+</footer>
+</div>
+</html>

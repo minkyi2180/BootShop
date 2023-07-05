@@ -1,0 +1,39 @@
+<nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">쇼핑몰</a>
+        
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-5 mb-lg-0">
+                 <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+                    <a class="nav-link active" sec:authorize="isAuthenticated()" th:text="|${#authentication.name} 님|"></a>
+                    </li>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+                 <li class="nav-item">
+                 <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/mypage}">마이페이지</a>
+                 <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입</a>
+                     <li class="nav-item">
+                    <a class="nav-link" th:href="@{/question/list}">커뮤니티</a>
+                    <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/admin}">관리자페이지</a>
+                </li>
+              
+                
+          	 <form class="d-flex">
+                        <button class="btn btn-outline-dark" type="button" onclick="location.href='/shop/cart'">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+            </ul>
+        </div>
+      														
+    </div>
+</nav>

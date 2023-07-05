@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<title>쇼핑몰메인</title>
+</head>
+
+
+<div layout:fragment="content" class="container my-3">
+
+	<div class="row my-3"></div>
+
+
+		
+
+	
+	<body>
+		<div class="category my-4">
+			<ul class="category__list me-auto mb-2 mb-lg-0"
+				style="list-style-type: none; ">
+							<li class="cate_menu" style="display: inline-block;text-align: center;margin-left: 50px;">
+				<a class="cate_link" th:href="@{/shop/all}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/a.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				전제품</a>
+</li>
+			<li class="cate_menu" style="display: inline-block; text-align: center; margin-left: 50px;">
+				<a class="cate_link" th:href="@{/question/list}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/1.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				커뮤니티</a>
+</li>
+
+			<li class="cate_menu" style="display: inline-block; text-align: center;margin-left: 50px;">
+				<a class="cate_link" href="/shop/cart" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/2.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				장바구니</a>
+</li>
+			<li class="cate_menu" style="display: inline-block;text-align: center;margin-left: 50px;">
+				<a class="cate_link" th:href="@{/question/list}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/4.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				주문내역</a>
+</li>
+			<li class="cate_menu" style="display: inline-block; text-align: center;margin-left: 50px;">
+				<a class="cate_link" th:href="@{/user/mypage}" style="text-decoration: none; color:inherit;">
+				<img class="cate_img" src="/3.jpg" style="height: 80px; display: block; border-radius: 50% ">
+				마이페이지</a>
+</li>
+		
+				
+	
+			</ul>
+		</div>
+				
+		
+		<!-- Section-->
+
+		<section>전제품보기</section>
+		<!-- foreach문으로  -->
+	</body>
+</html>
