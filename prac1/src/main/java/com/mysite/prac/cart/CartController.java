@@ -34,11 +34,15 @@ public class CartController {
 	private final CartItemService cartItemService;
 	
 	
-	@GetMapping("/list")
-	public String cartlist(Model model) {
-		List<CartItem> cartlist = this.cartItemRepository.findAll();
-		model.addAttribute("cartlist", cartlist);
-		return "cart";
+	@GetMapping("/list/{id}")
+	public String cartlist(Model model, Principal principal) {
+	    // Get the currently logged-in user
+	    String username = principal.getName();
+	    SiteUser user = userRepository.findAllByusername(username);
+	    
+	    List<CartItem> cartlist = cartItemRepository.findByCartUser(user);
+	    model.addAttribute("cartlist", cartlist);
+	    return "cart";
 	}
 	
 	
