@@ -21,7 +21,7 @@
 			 	<div id="item_list" class="card h-100">
 			 	<img th:data-uri="@{|item/detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="...">
 			   	<div class="card-body">
-			     	<a th:href="@{|item/detail/${item.id}|}" class="card-title" th:text="${item.name}"></a>
+			     	<a th:href="@{|detail/${item.id}|}" class="card-title" th:text="${item.name}" style="text-decoration: none;"></a>
 			     	
 			     	<h5 class="card-text" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '원'}"></h5>
 			     	<span th:if="${item.isSoldOut == 0 and item.stock > 0}" class="badge text-bg-success" th:text="판매중"></span>
