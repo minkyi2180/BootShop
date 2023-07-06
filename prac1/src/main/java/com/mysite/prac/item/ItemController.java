@@ -136,5 +136,12 @@ public class ItemController {
 		}
 		
 		//상세페이지
+		@GetMapping(value = "/detail/{id}")
+		public String detail(@PathVariable("id") int id, Model model) {
+			Item item = this.itemService.getItem(id);
+			this.itemService.hitAddItem(item);
+			model.addAttribute("item",item);
+			return "itemDetail";
+		}
 
 }
