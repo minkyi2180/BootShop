@@ -32,7 +32,7 @@
                 <td th:text="${cartItem.item.price}"></td>
                <td>
                 <form th:action="@{/cart/updateQuantity/{id}(id=${cartItem.item.id})}" method="post" >
-                    <input type="number" name="quantity" th:value="${cartItem.count}" min="1" style="width: 20%; margin-bottom: 10px; text-align: center;"><br>
+                    <input type="number" name="quantity" th:value="${cartItem.count}" min="1" style="width: 20%; margin-bottom: 10px; text-align: center;" onchange="updatePrice(this)"><br>
                     <button type="submit" class="btn btn-primary">변경</button>
                 </form>
             </td>
@@ -44,22 +44,30 @@
         </tbody>
     </table>
     
-    <div>
-    <!-- 가격 -->
-    <h5>
-    총 <span class="badge text-bg-light" th:text="${#lists.size(cartlist)}"></span>개의 상품
-</h5>
-<h5>
-    총 가격: <span th:text="${totalPrice}"></span>원
-</h5>
-    <button>주문하기</button>
+    <div style="border: 1px gray solid; margin: 30px; padding: 20px;">
+        <!-- 가격 -->
+        <h5>
+            총 <span class="badge text-bg-light" th:text="${#lists.size(cartlist)}"></span>개의 상품
+        </h5>
+        <h5>
+            총 가격: <span id="totalPrice" th:text="${totalPrice}"></span>원
+        </h5>
+        <button>주문하기</button>
     </div>
 
+    <script th:inline="javascript">
+        function updatePrice(input) {
+            var priceElement = input.parentNode.parentNode.querySelector("td:nth-child(3)");
+            var totalPriceElement = document.getElementById("totalPrice");
 
+            var price = parseFloat(priceElement.textContent);
+            var quantity = parseInt(input.value);
+            var total = price * quantity;
+
+            totalPriceElement.textContent = total;
+        }
+    </script>
 
 	</div>
-
-
-
-
+</div>
 </html>

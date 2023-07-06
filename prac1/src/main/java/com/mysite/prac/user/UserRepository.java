@@ -13,6 +13,7 @@ public interface UserRepository extends JpaRepository<SiteUser, Long> {
 	SiteUser findAllByusername(String username);
 	Optional<SiteUser> findByusername(String id);
 	SiteUser findById(int id);
+	SiteUser findByUsername(String username);
 	
 	
 }

@@ -42,11 +42,6 @@ public class CartController {
 	    
 	    List<CartItem> cartlist = cartItemRepository.findByCartUser(user);
 	    model.addAttribute("cartlist", cartlist);
-	    
-	    int totalPrice = (int)cartlist.stream()
-	            .mapToDouble(cartItem -> cartItem.getItem().getPrice() * cartItem.getCount())
-	            .sum();
-	    model.addAttribute("totalPrice", totalPrice);
 	    return "cart";
 	}
 	
@@ -124,6 +119,7 @@ public class CartController {
 	            cartItemService.updateQuantity(cartItem, quantity);
 	        }
 	    }
+	    
 	    
 	    return "redirect:/cart/list";
 	}
