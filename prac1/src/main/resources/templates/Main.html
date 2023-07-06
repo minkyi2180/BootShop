@@ -65,7 +65,7 @@
 <div class="row row-cols-1 row-cols-md-4 g-4" th:if="${#lists.size(item_list) > 0}">
     <div class="col" th:each="item,index : ${item_list}" th:if="${index.index} < 4">
         <div id="item" class="card h-100">
-            <a th:href="@{|item/detail/${item.id}|}"><img th:data-uri="@{|item/detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="..."></a>
+            <a th:href="@{|item/detail/${item.id}|}"><img th:data-uri="@{|item/detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="..." style="width:70%;"></a>
             <div class="card-body">
                 <a th:href="@{|item/detail/${item.id}|}" class="card-title" th:text="${item.name}" style="text-decoration: none;"></a>
                 
