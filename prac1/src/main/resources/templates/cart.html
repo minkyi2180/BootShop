@@ -1,14 +1,75 @@
-<!DOCTYPE html>
-<html  layout:decorate="~{layout}">
-<head>
-<meta charset="UTF-8">
-<title>장바구니</title>
-</head>
-<body>
+<html layout:decorate="~{layout}" xmlns:th="http//www.thymeleaf.org">
 <div layout:fragment="content" class="container my-3">
 
-<div class="row my-3">
-   카트
+	<!-- 대문 끝 -->
+	<div class="container text-center">
+		<br>
+		<h3>장바구니</h3>
+		<h5>
+			총 <span class="badge text-bg-light"
+				th:text="|${#lists.size(cartlist)}|"></span>개의 상품
+		</h5>
+		<hr>
+		<br>
+
+		
+			<table>
+        <thead style="border-bottom: 1px gray solid;">
+            <tr>
+            <th></th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over the cartlist and display cart items -->
+          <tr th:each="cartItem : ${cartlist}" style="border-bottom: 1px gray solid">
+                <!-- 이미지 넣기 -->
+                <td style="width: 15%;" ><img th:src="${cartItem.item.filepath}" class="itemImg card-img-top" alt="..." ></td>
+                <td th:text="${cartItem.item.name}" style="width: 50%;" ></td>
+                <td th:text="${cartItem.item.price}"></td>
+               <td>
+                <form th:action="@{/cart/updateQuantity/{id}(id=${cartItem.item.id})}" method="post" >
+                    <input type="number" name="quantity" th:value="${cartItem.count}" min="1" style="width: 20%; margin-bottom: 10px; text-align: center;" onchange="updatePrice(this)"><br>
+                    <button type="submit" class="btn btn-primary">변경</button>
+                </form>
+            </td>
+              <td>	 <form th:action="@{/cart/delete/{id}(id=${cartItem.item.id})}" method="post">
+                    <button type="submit" class="btn btn-danger">삭제</button>
+                </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div style="border: 1px gray solid; margin: 30px; padding: 20px;">
+        <!-- 가격 -->
+        <h5>
+            총 <span class="badge text-bg-light" th:text="${#lists.size(cartlist)}"></span>개의 상품
+        </h5>
+        <h5>
+            총 가격: <span id="totalPrice" th:text="${totalPrice}"></span>원
+        </h5>
+        <button>주문하기</button>
     </div>
-</body>
+
+    <script th:inline="javascript">
+        function updatePrice(input) {
+            var priceElement = input.parentNode.parentNode.querySelector("td:nth-child(3)");
+            var totalPriceElement = document.getElementById("totalPrice");
+
+            var price = parseFloat(priceElement.textContent);
+            var quantity = parseInt(input.value);
+            var total = price * quantity;
+
+            totalPriceElement.textContent = total.toFixed(0);
+        }
+       
+        
+    </script>
+
+	</div>
+</div>
 </html>

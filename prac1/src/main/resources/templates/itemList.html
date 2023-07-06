@@ -19,7 +19,7 @@
 		<div class="row row-cols-1 row-cols-md-6 g-4 item_list_parent">
  			<div class="col item_list_child" th:each="item: ${item_list}">
 			 	<div id="item_list" class="card h-100">
-			 	<img th:data-uri="@{|item/detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="...">
+			 	<a th:href="@{|detail/${item.id}|}"><img th:data-uri="@{|detail/${item.id}|}" th:src="@{${item.filepath}}" class="itemImg card-img-top" alt="..."></a>
 			   	<div class="card-body">
 			     	<a th:href="@{|detail/${item.id}|}" class="card-title" th:text="${item.name}" style="text-decoration: none;"></a>
 			     	
