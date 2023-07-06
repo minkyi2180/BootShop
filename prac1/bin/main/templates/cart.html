@@ -46,6 +46,12 @@
     
     <div>
     <!-- 가격 -->
+    <h5>
+    총 <span class="badge text-bg-light" th:text="${#lists.size(cartlist)}"></span>개의 상품
+</h5>
+<h5>
+    총 가격: <span th:text="${totalPrice}"></span>원
+</h5>
     <button>주문하기</button>
     </div>
 
