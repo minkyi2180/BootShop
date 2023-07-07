@@ -20,7 +20,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	//1. 유니폼 2.모자
+	//1. 유니폼 2.용품
 	
 	
 	private String category_name;
