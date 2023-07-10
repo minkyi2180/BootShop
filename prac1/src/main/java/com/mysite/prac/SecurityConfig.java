@@ -17,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
@@ -43,7 +44,7 @@ public class SecurityConfig {
             .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true)
-            
+        
         ;
         return http.build();
     }

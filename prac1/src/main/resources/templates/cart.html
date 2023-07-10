@@ -1,4 +1,6 @@
-<html layout:decorate="~{layout}" xmlns:th="http//www.thymeleaf.org">
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org" >
+
+
 <div layout:fragment="content" class="container my-3">
 
 	<!-- 대문 끝 -->
@@ -11,8 +13,6 @@
 		</h5>
 		<hr>
 		<br>
-
-		
 			<table>
         <thead style="border-bottom: 1px gray solid;">
             <tr>
@@ -24,11 +24,14 @@
             </tr>
         </thead>
         <tbody>
+        
             <!-- Iterate over the cartlist and display cart items -->
           <tr th:each="cartItem : ${cartlist}" style="border-bottom: 1px gray solid">
                 <!-- 이미지 넣기 -->
-                <td style="width: 15%;" ><img th:src="${cartItem.item.filepath}" class="itemImg card-img-top" alt="..." ></td>
-                <td th:text="${cartItem.item.name}" style="width: 50%;" ></td>
+                <td style="width: 15%;" > <a th:href="@{|/item/detail/${cartItem.item.id}|}">
+            <img th:src="${cartItem.item.filepath}" class="itemImg card-img-top" alt="...">
+        </a></td>
+                <td th:text="${cartItem.item.name}" style="width: 40%;" th:href="@{|/item/detail/${cartItem.item.id}|}"></td>
                 <td th:text="${cartItem.item.price}"></td>
                <td>
                 <form th:action="@{/cart/updateQuantity/{id}(id=${cartItem.item.id})}" method="post" >
@@ -44,15 +47,24 @@
         </tbody>
     </table>
     
-    <div style="border: 1px gray solid; margin: 30px; padding: 20px;">
+    <div style="border: 1px gray solid; width:300px; margin: 30px; padding: 20px; float: right;">
         <!-- 가격 -->
         <h5>
             총 <span class="badge text-bg-light" th:text="${#lists.size(cartlist)}"></span>개의 상품
         </h5>
         <h5>
-            총 가격: <span id="totalPrice" th:text="${totalPrice}"></span>원
+            Total : <span id="totalPrice" th:text="${totalPrice}" ></span>원
         </h5>
-        <button>주문하기</button>
+            
+            
+            <form  th:action="@{/cart/order/{id}(user?.id)}" style="margin-top: 30px;">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg">
+            <button type="submit" class="btn btn-dark" style="width: 250px;" onclick="location.href='/cart/order/{id}'">주문하기</button>
+        </div>
+    </div>
+</form>
+
     </div>
 
     <script th:inline="javascript">

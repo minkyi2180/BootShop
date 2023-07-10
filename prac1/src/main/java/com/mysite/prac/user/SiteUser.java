@@ -34,7 +34,7 @@ public class SiteUser {
 	   //주소
 //    private String postcode; //우편번호
 //    private String address; //주소
-//    private String address_detail; //상세주소
+//    private String address2; //상세주소
 //    
 //    @Column(unique = true)
 //    private String phone_number; //폰번호

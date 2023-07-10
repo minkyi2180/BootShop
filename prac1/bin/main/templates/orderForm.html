@@ -1,0 +1,149 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" ><!-- 레이아웃 -->
+<!-- Bootstrap CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<!-- DevTools failed to load source map: 
+	Could not load content for http://localhost:8090/bootstrap.min.css.map: HTTP 오류: 
+	상태 코드 404, 
+	net::ERR_HTTP_RESPONSE_CODE_FAILURE 발생
+	
+	부트스트랩 을 읽지 못해 발생한 오류 > min.css/js에서 /*# sourceMappingURL=bootstrap.min.css.map */를 주석처리하고
+	form에다가 link rel을 넣어도 오류발생 -->
+	
+	<!-- 대문 시작 -->
+	
+		<div id="order_text" style="margin: 10px;">
+			<h3>주문</h3>
+		</div>
+	
+
+	<div class="container my-6"><!-- container my-6 -->
+		<h4 style="text-align: center;">주문정보 입력</h4>
+		<br><br>
+		<table>
+        <thead style="border-bottom: 1px gray solid;">
+            <tr>
+            <th></th>
+                <th >상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        <tr style="border-bottom: 1px gray solid;">
+        <td style="width: 25%;" ><img th:src="@{${item?.filepath}}" style="width: 40%;" ></td>
+        <td th:text="${item?.name}" style="width: 40%;"></td>
+        <td th:text="${#numbers.formatInteger(item?.price, 3, 'COMMA') + '원'}" ></td>
+        <td name="countofOrder" ></td>
+        </tr>
+            
+            </tbody>
+            </table>
+            <br><br>
+            
+            
+          
+			  	<!-- 주문등록 폼 -->
+			  	<form id="orderForm" th:action="@{|/order/buy/${item?.id}|}" method="post">
+
+				  	<div class="row justify-content-md-center">
+				  		<div class="col col-lg-6">
+				  				<label>주문수량</label>
+				  	 	<input id="countofOrder" type="number" class="form-control"  value="1">
+				  			 <label>가격</label>
+				  			<input id="price" type="text" class="form-control"  th:value="${item?.price}" readonly>
+				  		<label>배송메시지</label>
+				  		<textarea id="text"  class="form-control"></textarea>
+				  		
+				  		</div>
+				  		
+				  		<div class="col col-lg-6">
+				  			<label>배송정보 입력</label>
+				  			
+				  			<input class="form-control" type="button" id="addressBtn_kakao" value="우편번호/주소 찾기">
+							<input class="form-control" type="text" id="sample6_postcode" placeholder="우편번호">
+							<input class="form-control" type="text" id="address_kakao" placeholder="주소" readonly>
+							<input  class="form-control" type="text" id="address2" placeholder="상세주소 입력">
+							<input class="form-control" type="text" id="sp_name" placeholder="배송 받을 분 성함 입력">
+				  		</div>
+				  		
+				  		</div>
+					<br>
+					<div class="row justify-content-md-center">
+						<button id="orderFormSubmit" type="submit" class="btn btn-dark">주문하기</button>
+					</div>
+					</form> 
+					</div>
+					</div>
+					</div>
+					
+					
+					<input id="user_postcode" type="hidden" th:value="${user.postcode}">
+<input id="user_address" type="hidden" th:value="${user.address}">
+<input id="user_address2" type="hidden" th:value="${user.address2}">
+<input type="hidden" id="item_price" th:value="${item.price}">
+</div><!-- 레이아웃 -->
+					
+			<script layout:fragment="script" type='text/javascript'>
+
+var user_postcode = document.getElementById("user_postcode");
+var user_address = document.getElementById("user_address");
+var user_addressDetail = document.getElementById("user_address2");
+var price = document.getElementById("price");
+var item_price = document.getElementById("item_price");
+
+
+
+//배송정보 입력옵션
+function addressOption(e){
+	if(e.value == 1){
+		console.log("1선택!");
+		document.getElementById("sample6_postcode").value = user_postcode.value;
+		document.getElementById("address_kakao").value = user_address.value;
+		document.getElementById("address2").value = user_address2.value;
+		
+	}
+	if(e.value == 2){
+		console.log("2선택!");
+		var blank = "";
+		document.getElementById("sample6_postcode").value = blank;
+		document.getElementById("address_kakao").value = blank;
+		document.getElementById("address2").value = blank;
+	}
+}
+
+
+//카카오API주소입력
+window.onload = function(){
+  document.getElementById("addressBtn_kakao").addEventListener("click",function(){
+      new daum.Postcode({
+          oncomplete: function(data) { //선택시 입력값 세팅
+              document.getElementById("address_kakao").value = data.address; // 주소 넣기
+              document.getElementById('sample6_postcode').value = data.zonecode;
+              document.getElementById("address2").focus(); //상세입력 포커싱
+              
+              //document.querySelector("input[name=address2]").focus(); 이 부분을 고쳤더니 
+              // Uncaught TypeError: Cannot read properties of null (reading 'focus') 오류가 나지않는다
+          }
+      }).open();
+  });
+}		
+var sample6_postcode = document.getElementById("sample6_postcode");
+var address_kakao = document.getElementById("address_kakao");
+var address2 = document.getElementById("address2");
+var sp_name = document.getElementById("sp_name");
+
+const orderForm = document.getElementById("orderForm");
+var orderFormSubmit = document.getElementById("orderFormSubmit");
+
+orderFormSubmit.addEventListener('click',function(e){
+	e.preventDefault();
+	var blank = "";
+	confirm("주문하시겠습니까?");
+
+		document.getElementById("orderForm").submit();
+})
+</script>
+			  		
+</html>
