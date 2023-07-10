@@ -59,6 +59,11 @@ public class UserService {
     		throw new com.mysite.prac.DataNotFoundException("SiteUser Not found");
     	}
     }
+
+	public Optional<SiteUser> getById(Long id) {
+		return userRepository.findById(id);
+	}
+
     
     
 	
