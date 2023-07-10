@@ -138,7 +138,7 @@ public class CartController {
 	}
 
 	   
-	    @GetMapping("/order")
+	    @GetMapping("/order/{id}")
 	    public String order(
 	    	Model model, Principal principal, @PathVariable(value="id") int id){
 				Item item = this.itemService.getItem(id);
@@ -147,7 +147,7 @@ public class CartController {
 			    String username = principal.getName();
 			    model.addAttribute("username", username);
 		
-				return "orderform";
+				return "orderForm";
 	    }
 
 	
