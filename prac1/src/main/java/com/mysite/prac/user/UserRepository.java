@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<SiteUser, Long> {
 	SiteUser findAllByusername(String username);
-	Optional<SiteUser> findByusername(String id);
+	Optional<SiteUser> findByusername(String username);
 	Optional<SiteUser> findById(Long id);
 	SiteUser findByUsername(String username);
 	

@@ -1,8 +1,5 @@
 package com.mysite.prac.orderItem;
 
-import lombok.Setter;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -15,15 +12,18 @@ import com.mysite.prac.item.Item;
 import com.mysite.prac.order.Order;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 public class OrderItem {
 	
+	//주문번호
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
+	
 	
 	@ManyToOne
 	private Order order;
@@ -31,16 +31,23 @@ public class OrderItem {
 	@ManyToOne
 	private Item item;
 	
-	private int count; //주문수량
 	
-	private int price; //주문가격
+	//주문수량
+	private int count;
 	
-	//배송
-	private String postcode; //우편번호
-	private String address; //주소
-	private String address2; //상세주소
-	private String sp_name; //배송받는 사람
-	private int status; //주문 상태 
-	private LocalDateTime orderDate; //주문 시간
-
+	//주문가격
+	private int price;
+	
+	//배송지
+	private String address;
+	private String postcode;
+	private String address2;
+	private String shipping_name; //배송받을사람의 이름
+	
+	//입금 전(1), 입금 확인(2) 기본값 =1
+	private int depositStatus;
+	
+	//주문날짜
+	private LocalDateTime orderDate;
+	
 }

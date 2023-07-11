@@ -1,8 +1,14 @@
 package com.mysite.prac.orderItem;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mysite.prac.DataNotFoundException;
@@ -17,24 +23,28 @@ public class OrderItemService {
 	private final OrderItemRepository orderItemRepository;
 	
 	
-	//주문
-	public OrderItem create(Order order, Item item, int count,int price, String postcode, String address, String address2, String sp_name ) {
-		OrderItem it = new OrderItem();
+	
+	public OrderItem create(Order order,Item item,int count,int price,String address, String address2,String postcode,
+			String shipping_name
+			) {
+		OrderItem oi = new OrderItem();
+		oi.setDepositStatus(1);//기본값(1=입금전)
 		
-		it.setStatus(1); //입금 전 1, 입금 후2 
-		it.setOrder(order);
-		it.setItem(item);
-		it.setCount(count);
-		it.setPrice(price);
-		
-		it.setPostcode(postcode);
-		it.setAddress(address);
-		it.setAddress2(address2);
-		
-		it.setSp_name(sp_name);
-		it.setOrderDate(LocalDateTime.now());
-		
-		return it;
+		oi.setOrder(order);
+		oi.setItem(item);
+		oi.setCount(count);
+		oi.setPrice(price);
+		oi.setAddress(address);
+		oi.setAddress2(address2);
+		oi.setPostcode(postcode);
+		oi.setShipping_name(shipping_name);
+		oi.setOrderDate(LocalDateTime.now());
+		this.orderItemRepository.save(oi);
+		return oi;
+	}
+	
+	public void delete(OrderItem orderItem) {
+		this.orderItemRepository.delete(orderItem);
 	}
 	
 	public OrderItem getOrderItemById(Integer id) {
@@ -42,15 +52,32 @@ public class OrderItemService {
 		if(orderItem.isPresent()) {
 			return orderItem.get();
 		}else {
-			throw new DataNotFoundException("장바구니 상품을 찾을 수 없습니다");
+			throw new DataNotFoundException("CartItem not found");
 		}
 	}
 	
-	
-	//삭제
-	public void delete(OrderItem orderItem) {
-		this.orderItemRepository.delete(orderItem);
+	public Page<OrderItem> getOrderItemList(int page){
+		List<Sort.Order> sorts = new ArrayList<>();
+		sorts.add(Sort.Order.desc("orderDate"));
+		
+		Pageable pageable = PageRequest.of(page, 5,Sort.by(sorts));
+		return this.orderItemRepository.findAll(pageable);
 	}
 	
+	//입금 입금확인 개수확인.
+	public int getOrderItemDepositStatusSize(int depositStatus) {
+		List<OrderItem> orderItemList = this.orderItemRepository.findAllByDepositStatus(depositStatus);
+		int size = orderItemList.size();
+		
+		return size;
+		
+	}
 	
+	//입금확인처리
+	public OrderItem depositChecked(OrderItem orderItem) {
+		orderItem.setDepositStatus(2); //입금확인은 '2'로 규정했음.
+		this.orderItemRepository.save(orderItem);
+		
+		return orderItem;
+	}
 }

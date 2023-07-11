@@ -1,6 +1,5 @@
 package com.mysite.prac.order;
 
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +27,6 @@ public class OrdersForm {
 	private String address2;
 	
 	@NotEmpty(message = "배송받으실 분의 성함을 꼭 적어주세요.")
-	private String sp_name; //배송받을사람의 이름
+	private String shipping_name; //배송받을사람의 이름
 	
 }

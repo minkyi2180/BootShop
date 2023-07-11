@@ -3,7 +3,6 @@ package com.mysite.prac.order;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,22 +20,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
+	//주문자의 이름
 	@OneToOne
 	private SiteUser user;
 	
-	   //주소
-//  private String postcode; //우편번호
-//  private String address; //주소
-//  private String address2; //상세주소
-  
-	
+	//배송지
+		private String address;
+		private String postcode;
+		private String address2;
+		private String shipping_name; //배송받을사람의 이름
+		
 	@OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
 	private List<OrderItem> orderItemList;
-
 }
