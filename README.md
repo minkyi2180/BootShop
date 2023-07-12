@@ -4,7 +4,7 @@
 📆 기간 : 6/24 ~ <br>
 👩 인원 : 1명<br>
 🔨 개발환경:
-<img src="">
+
  <img src="https://img.shields.io/badge/TypeScript-#E34F26?style=flat&logo=TypeScript&logoColor=white"/>
 <br>
 🔨 기능<br>
