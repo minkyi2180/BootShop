@@ -10,6 +10,7 @@ import javax.persistence.Id;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,10 @@ import lombok.ToString;
 @Getter
 @ToString
 public class SiteUser {
+
+	
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +36,15 @@ public class SiteUser {
 	@Column(unique = true)
 	private String email;
 	
-	   //주소
-//    private String postcode; //우편번호
-//    private String address; //주소
-//    private String address2; //상세주소
-//    
-//    @Column(unique = true)
-//    private String phone_number; //폰번호
+	 
 
 	@Enumerated(EnumType.STRING)
 	private UserRole role; // 권한
+	
+//	private String provider;
+//	private String providerId;
+	
+
+	
 
 }

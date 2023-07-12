@@ -58,7 +58,7 @@ public class ItemService {
     
     
     //id값으로 상품(item) 조회
-    public Item getItem(Integer id) {
+    public Item getItem(int id) {
     	Item item = this.itemRepository.findAllById(id);
     	return item;
     }

@@ -37,8 +37,8 @@ public class CartController {
 	private final CartItemRepository cartItemRepository;
 	private final CartItemService cartItemService;
 	
-	
-	@GetMapping("/list/{username}")
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/list/{id}")
 	public String cartlist(Model model, Principal principal) {
 	    // Get the currently logged-in user
 	    String username = principal.getName();
@@ -138,17 +138,7 @@ public class CartController {
 	}
 
 	   
-	    @GetMapping("/order/{id}")
-	    public String order(
-	    	Model model, Principal principal, @PathVariable(value="id") int id){
-				Item item = this.itemService.getItem(id);
-			    model.addAttribute("item", item);
-			    Optional<SiteUser> user = this.userService.getByUserName(principal.getName());
-			    String username = principal.getName();
-			    model.addAttribute("username", username);
-		
-				return "orderForm";
-	    }
+	    
 
 	
 

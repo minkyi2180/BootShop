@@ -7,7 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-	private final UserRepository userRepository;
-	private final PasswordEncoder passwordEncoder;
+	private  UserRepository userRepository;
+	private  PasswordEncoder passwordEncoder;
 	
 	public SiteUser create(String username, String email, String password) {
 		SiteUser user = new SiteUser();
