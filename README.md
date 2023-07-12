@@ -4,7 +4,7 @@
 📆 기간 : 6/24 ~ <br>
 👩 인원 : 1명<br>
 🔨 개발환경:
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 
 <br>
