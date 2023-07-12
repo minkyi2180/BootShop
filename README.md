@@ -6,6 +6,8 @@
 🔨 개발환경:
 
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+
 <br>
 🔨 기능<br>
 📑 DB <br>
