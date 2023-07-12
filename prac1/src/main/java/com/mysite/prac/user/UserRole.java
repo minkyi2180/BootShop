@@ -9,6 +9,8 @@ public enum UserRole {
 	
 	UserRole(String value){
 		this.value = value;
+//		this.key = key;
 	}
 	private String value;
+//	private String key;
 }

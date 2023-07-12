@@ -7,13 +7,18 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.mysite.prac.user.UserSecurityService;
 
 
 
@@ -21,11 +26,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
-public class SecurityConfig {
+public class SecurityConfig{
 
+	private UserSecurityService userSecurityService;
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().requestMatchers(
+      
+		http.authorizeHttpRequests().requestMatchers(
                 new AntPathRequestMatcher("/**")).permitAll()
         .and()
         .csrf().ignoringRequestMatchers(
@@ -44,6 +51,13 @@ public class SecurityConfig {
             .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true)
+         // OAuth 로그인
+            .and()
+            .oauth2Login()
+            .loginPage("/security-login/login")
+            .defaultSuccessUrl("/security-login")
+            .userInfoEndpoint()
+           
         
         ;
         return http.build();

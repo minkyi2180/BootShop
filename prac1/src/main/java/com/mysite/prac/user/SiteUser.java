@@ -10,6 +10,7 @@ import javax.persistence.Id;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,10 @@ import lombok.ToString;
 @Getter
 @ToString
 public class SiteUser {
+
+	
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +40,11 @@ public class SiteUser {
 
 	@Enumerated(EnumType.STRING)
 	private UserRole role; // 권한
+	
+//	private String provider;
+//	private String providerId;
+	
+
+	
 
 }
