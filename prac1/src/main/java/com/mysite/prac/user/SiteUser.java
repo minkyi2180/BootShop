@@ -21,10 +21,6 @@ import lombok.ToString;
 @ToString
 public class SiteUser {
 
-	
-
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -35,11 +31,18 @@ public class SiteUser {
 
 	@Column(unique = true)
 	private String email;
-	
-	 
 
 	@Enumerated(EnumType.STRING)
 	private UserRole role; // 권한
+
+	public SiteUser(String username, String password, String email) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		
+	}
+
+	
 	
 //	private String provider;
 //	private String providerId;
