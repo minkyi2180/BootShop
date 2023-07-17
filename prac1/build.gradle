@@ -42,7 +42,8 @@ dependencies {
 	  
 	  //로그인 api
 	  implementation 'org.springframework.boot:spring-boot-starter-oauth2-client
- 
+	  implementation 'org.springframework.security:spring-security-oauth2-jose''
+	  implementation 'com.google.code.gson:gson:2.8.7' 
 	  
 	  implementation 'org.springframework.security:spring-security-taglibs'
 	  testImplementation 'org.springframework.security:spring-security-test'

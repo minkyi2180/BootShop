@@ -56,10 +56,10 @@ public class SecurityConfig{
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true)
          // OAuth 로그인
-//            .and()
-//            .oauth2Login()
-//            .loginPage("/")
-//            .userInfoEndpoint()
+            .and()
+            .oauth2Login()
+            .loginPage("/")
+            .userInfoEndpoint()
 //            .userService(oauthUserService)
 
         ;
