@@ -22,7 +22,7 @@ public class UserService {
 	private  PasswordEncoder passwordEncoder;
 	
 	public SiteUser create(String username, String email, String password) {
-		SiteUser user = new SiteUser();
+		SiteUser user = new SiteUser(username, password, email);
 		user.setUsername(username);
 		user.setEmail(email);
 		

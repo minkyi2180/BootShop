@@ -1,5 +1,6 @@
 package com.mysite.prac;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 import com.mysite.prac.user.UserSecurityService;
 
 
@@ -29,6 +31,8 @@ import com.mysite.prac.user.UserSecurityService;
 public class SecurityConfig{
 
 	private UserSecurityService userSecurityService;
+	
+
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
       
@@ -52,13 +56,12 @@ public class SecurityConfig{
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true)
          // OAuth 로그인
-            .and()
-            .oauth2Login()
-            .loginPage("/security-login/login")
-            .defaultSuccessUrl("/security-login")
-            .userInfoEndpoint()
-           
-        
+//            .and()
+//            .oauth2Login()
+//            .loginPage("/")
+//            .userInfoEndpoint()
+//            .userService(oauthUserService)
+
         ;
         return http.build();
     }
