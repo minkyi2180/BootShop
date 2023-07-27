@@ -13,6 +13,8 @@
 
 <br>
 🔨 기능<br>
+<img src='https://github.com/minkyi2180/BootShop/assets/130128767/d7c71ce4-5812-41c7-999c-81886f8a5776' width='70%'>
+
 📑 DB <br>
 <img src='https://github.com/minkyi2180/BootShop/assets/130128767/80dfd680-69f2-450d-aa82-d343425271cc' width='70%'>
 
