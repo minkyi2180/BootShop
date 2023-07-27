@@ -15,3 +15,7 @@
 🔨 기능<br>
 📑 DB <br>
 <img src='https://github.com/minkyi2180/BootShop/assets/130128767/80dfd680-69f2-450d-aa82-d343425271cc' width='70%'>
+
+
+BLOG <br>
+: https://byminkyi.tistory.com/13
